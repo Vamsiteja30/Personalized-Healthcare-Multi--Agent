@@ -1,15 +1,15 @@
-# HealthSync Docker Setup Guide
+# NOVA Docker Setup Guide
 
-This guide explains how to deploy the HealthSync Healthcare Multi-Agent application using Docker.
+This guide explains how to deploy the NOVA Healthcare Multi-Agent application using Docker.
 
-## 🐳 Prerequisites
+##  Prerequisites requried 
 
 - Docker Engine 20.10+
 - Docker Compose 2.0+
 - At least 2GB RAM available
 - 5GB free disk space
 
-## 🚀 Quick Start
+##  Quick Start to do 
 
 ### 1. Clone and Navigate
 ```bash
@@ -44,7 +44,7 @@ docker-compose up --build -d
 - **Backend API**: http://localhost:8000
 - **API Documentation**: http://localhost:8000/docs
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 healthcare-multi-agent-starter/
@@ -59,9 +59,9 @@ healthcare-multi-agent-starter/
 └── data/                      # Persistent data storage
 ```
 
-## 🔧 Docker Services
+##  Docker Services
 
-### Backend Service (`healthsync-backend`)
+### Backend Service (`NOVA-backend`)
 - **Image**: Python 3.11-slim
 - **Port**: 8000
 - **Features**:
@@ -71,7 +71,7 @@ healthcare-multi-agent-starter/
   - Google Gemini integration
   - Health check endpoint
 
-### Frontend Service (`healthsync-frontend`)
+### Frontend Service (`NOVA-frontend`)
 - **Image**: Node.js 18 + Nginx
 - **Port**: 3000 (mapped to nginx port 80)
 - **Features**:
@@ -81,7 +81,7 @@ healthcare-multi-agent-starter/
   - Static file serving
   - API proxy to backend
 
-## 🛠️ Docker Commands
+##  Docker Commands ##
 
 ### Build Services
 ```bash
@@ -141,9 +141,9 @@ docker inspect healthsync-backend | grep Health -A 10
 docker inspect healthsync-frontend | grep Health -A 10
 ```
 
-## 🔍 Troubleshooting
+##  Troubleshooting 
 
-### Common Issues
+### Common Issues 
 
 #### 1. Port Already in Use
 ```bash
@@ -193,7 +193,7 @@ docker-compose exec backend bash
 docker-compose exec frontend sh
 ```
 
-## 🔒 Security Considerations
+##  Security Considerations
 
 ### Environment Variables
 - Never commit API keys to version control
@@ -210,7 +210,7 @@ docker-compose exec frontend sh
 - Volumes are mounted for data persistence
 - Regular backups recommended
 
-## 📊 Monitoring
+##  Monitoring
 
 ### Health Checks
 Both services include health check endpoints:
@@ -235,7 +235,7 @@ docker stats
 docker system df
 ```
 
-## 🚀 Production Deployment
+##  Production Deployment
 
 ### Environment Setup
 ```bash
@@ -265,7 +265,7 @@ docker-compose up --scale backend=3
 docker-compose -f docker-compose.yml -f docker-compose.scale.yml up -d
 ```
 
-## 🔄 Updates and Maintenance
+##  Updates and Maintenance
 
 ### Update Application
 ```bash
@@ -295,16 +295,11 @@ docker system prune
 docker system prune -a --volumes
 ```
 
-## 📞 Support
+##  Support
 
 For issues related to:
 - **Docker setup**: Check this guide and troubleshooting section
 - **Application features**: Refer to main README.md
 - **API documentation**: Visit http://localhost:8000/docs
 
-## 🎯 Next Steps
 
-1. **Customize Configuration**: Modify `nginx.conf` and environment variables
-2. **Add Monitoring**: Integrate with Prometheus/Grafana
-3. **Set Up CI/CD**: Automate builds and deployments
-4. **Production Hardening**: Add SSL, load balancing, and monitoring
