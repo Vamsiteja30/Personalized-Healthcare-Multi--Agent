@@ -1,0 +1,137 @@
+name: NOVA Multi-Agent System
+version: 1.0.0
+description: Personalized Healthcare Multi-Agent Demo
+
+agents:
+  - name: greeting_agent
+    file: agno_agents/greeting_agent.py
+    class: GreetingAgent
+    description: Greets users personally by name and validates user ID
+    inputs:
+      - name: user_id
+        type: int
+        description: User ID to validate and greet
+    outputs:
+      - name: greeting_response
+        type: dict
+        description: Greeting message and user validation
+
+  - name: mood_tracker_agent  
+    file: agno_agents/mood_agent.py
+    class: MoodTrackerAgent
+    description: Captures user mood and computes rolling averages
+    inputs:
+      - name: user_id
+        type: int
+        description: User ID
+      - name: mood
+        type: str
+        description: Mood label (happy, sad, excited, tired, etc.)
+    outputs:
+      - name: mood_response
+        type: dict
+        description: Mood logging confirmation and rolling average
+
+  - name: cgm_agent
+    file: agno_agents/cgm_agent.py
+    class: CGMAgent
+    description: Logs Continuous Glucose Monitor readings with health alerts
+    inputs:
+      - name: user_id
+        type: int
+        description: User ID
+      - name: glucose_level
+        type: float
+        description: Glucose reading in mg/dL (range 80-300)
+    outputs:
+      - name: cgm_response
+        type: dict
+        description: Glucose validation and health alerts
+
+  - name: food_intake_agent
+    file: agno_agents/food_agent.py
+    class: FoodIntakeAgent
+    description: Records meals/snacks with nutritional analysis
+    inputs:
+      - name: user_id
+        type: int
+        description: User ID
+      - name: meal_description
+        type: str
+        description: Free-text meal description
+      - name: timestamp
+        type: str
+        description: Optional timestamp
+        required: false
+    outputs:
+      - name: food_response
+        type: dict
+        description: Food logging confirmation and nutrition analysis
+
+  - name: meal_planner_agent
+    file: agno_agents/meal_planner_agent.py
+    class: MealPlannerAgent
+    description: Generates adaptive meal plans based on health data
+    inputs:
+      - name: user_id
+        type: int
+        description: User ID
+      - name: preferences
+        type: dict
+        description: Dietary preferences and medical conditions
+        required: false
+    outputs:
+      - name: meal_plan_response
+        type: dict
+        description: Generated meal plan with macros
+
+  - name: interrupt_agent
+    file: agno_agents/interrupt_agent.py
+    class: InterruptAgent
+    description: General Q&A assistant for handling unrelated queries
+    inputs:
+      - name: user_id
+        type: int
+        description: User ID
+      - name: query
+        type: str
+        description: Free-form user query
+    outputs:
+      - name: interrupt_response
+        type: dict
+        description: Answer and routing back to main flow
+
+flows:
+  - name: health_tracking_flow
+    description: Main health tracking conversation flow
+    steps:
+      - agent: greeting_agent
+        next: mood_tracker_agent
+      - agent: mood_tracker_agent
+        next: cgm_agent
+      - agent: cgm_agent
+        next: food_intake_agent
+      - agent: food_intake_agent
+        next: meal_planner_agent
+      - agent: meal_planner_agent
+        next: complete
+
+  - name: interrupt_flow
+    description: Handle general queries at any point
+    steps:
+      - agent: interrupt_agent
+        next: return_to_previous
+
+database:
+  type: sqlite
+  path: ./data/healthcare.db
+  tables:
+    - users
+    - mood_logs
+    - cgm_logs
+    - food_logs
+
+llm:
+  provider: google_gemini
+  model: gemini-1.5-flash
+  api_key: ${GEMINI_API_KEY}

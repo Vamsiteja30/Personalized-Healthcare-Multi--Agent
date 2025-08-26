@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  # Backend Service
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+      args:
+        - HTTP_PROXY=
+        - HTTPS_PROXY=
+        - NO_PROXY=*
+    container_name: healthsync-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONPATH=/app
+      - DATABASE_PATH=/app/data/healthcare.db
+      - GEMINI_API_KEY=demo_mode
+      - GEMINI_MODEL=gemini-1.5-flash
+    volumes:
+      - ./data:/app/data
+      - ./agents:/app/agents
+    networks:
+      - healthsync-network
+    restart: unless-stopped
+
+  # Frontend Service
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+      args:
+        - HTTP_PROXY=
+        - HTTPS_PROXY=
+        - NO_PROXY=*
+    container_name: healthsync-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - healthsync-network
+    restart: unless-stopped
+
+networks:
+  healthsync-network:
+    driver: bridge
+
+volumes:
+  healthsync-data:
+    driver: local

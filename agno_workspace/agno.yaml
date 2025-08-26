@@ -1,0 +1,155 @@
+name: NOVA Multi-Agent System
+version: 1.0.0
+description: Personalized Healthcare Multi-Agent Demo following Agno framework
+
+# Agent Definitions as per instructions
+agents:
+  # 5. Greeting Agent
+  - name: greeting_agent
+    description: Greets users personally by name and validates user ID
+    inputs:
+      - name: user_id
+        type: int
+        description: User ID to validate and greet
+    outputs:
+      - name: greeting_response
+        type: dict
+        description: Greeting message and user validation
+    file: agents/greeting_agent.py
+    class: GreetingAgent
+
+  # 6. Mood Tracker Agent
+  - name: mood_tracker_agent
+    description: Captures user mood and computes rolling averages
+    inputs:
+      - name: user_id
+        type: int
+        description: User ID
+      - name: mood
+        type: str
+        description: Mood label (happy, sad, excited, tired, etc.)
+    outputs:
+      - name: mood_response
+        type: dict
+        description: Mood logging confirmation and rolling average
+    file: agents/mood_agent.py
+    class: MoodAgent
+
+  # 7. CGM Agent
+  - name: cgm_agent
+    description: Logs Continuous Glucose Monitor readings with health alerts
+    inputs:
+      - name: user_id
+        type: int
+        description: User ID
+      - name: glucose_level
+        type: float
+        description: Glucose reading in mg/dL (range 80-300)
+    outputs:
+      - name: cgm_response
+        type: dict
+        description: Glucose validation and health alerts
+    file: agents/cgm_agent.py
+    class: CGMAgent
+
+  # 8. Food Intake Agent
+  - name: food_intake_agent
+    description: Records meals/snacks with nutritional analysis
+    inputs:
+      - name: user_id
+        type: int
+        description: User ID
+      - name: meal_description
+        type: str
+        description: Free-text meal description
+      - name: timestamp
+        type: str
+        description: Optional timestamp
+        required: false
+    outputs:
+      - name: food_response
+        type: dict
+        description: Food logging confirmation and nutrition analysis
+    file: agents/food_agent.py
+    class: FoodIntakeAgent
+
+  # 9. Meal Planner Agent
+  - name: meal_planner_agent
+    description: Generates adaptive meal plans based on health data
+    inputs:
+      - name: user_id
+        type: int
+        description: User ID
+      - name: dietary_preference
+        type: str
+        description: Dietary preference (vegetarian, non-vegetarian, vegan)
+      - name: medical_conditions
+        type: list
+        description: List of medical conditions
+      - name: latest_mood
+        type: str
+        description: Latest mood reading
+      - name: latest_cgm
+        type: float
+        description: Latest CGM reading
+    outputs:
+      - name: meal_plan_response
+        type: dict
+        description: Generated meal plan with macros
+    file: agents/meal_planner_agent.py
+    class: MealPlannerAgent
+
+  # 10. Interrupt Agent (General Q&A Assistant)
+  - name: interrupt_agent
+    description: General Q&A assistant for handling unrelated queries
+    inputs:
+      - name: user_id
+        type: int
+        description: User ID
+      - name: query
+        type: str
+        description: Free-form user query
+    outputs:
+      - name: interrupt_response
+        type: dict
+        description: Answer and routing back to main flow
+    file: agents/interrupt_agent.py
+    class: InterruptAgent
+
+# Flows as per instructions
+flows:
+  - name: health_tracking_flow
+    description: Main health tracking conversation flow
+    steps:
+      - agent: greeting_agent
+        next: mood_tracker_agent
+      - agent: mood_tracker_agent
+        next: cgm_agent
+      - agent: cgm_agent
+        next: food_intake_agent
+      - agent: food_intake_agent
+        next: meal_planner_agent
+      - agent: meal_planner_agent
+        next: complete
+
+  - name: interrupt_flow
+    description: Handle general queries at any point
+    steps:
+      - agent: interrupt_agent
+        next: return_to_previous
+
+# Database configuration
+database:
+  type: sqlite
+  path: ./data/healthcare.db
+  tables:
+    - users
+    - mood_logs
+    - cgm_logs
+    - food_logs
+
+# LLM configuration
+llm:
+  provider: google_gemini
+  model: gemini-1.5-flash
+  api_key: ${GEMINI_API_KEY}

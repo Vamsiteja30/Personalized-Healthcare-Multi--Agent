@@ -1,0 +1,21 @@
+:root{
+  --bg:#0b1217; --card:#121a21; --ink:#e8eef3; --muted:#9fb1bf;
+  --accent:#60a5fa; --accent2:#22d3ee; --border:#23303b;
+}
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{margin:0;background:linear-gradient(120deg,#0b1217,#0e1720); color:var(--ink); font-family:Inter,system-ui,Arial}
+.container{max-width:1100px;margin:20px auto;padding:0 16px;display:grid;gap:22px}
+h1{margin:0 0 6px 0;font-size:28px}
+.kv{color:var(--muted);font-size:13px}
+.row{display:flex;gap:10px}
+.card{background:linear-gradient(180deg,var(--card),#0f1620);border:1px solid var(--border);border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.card-body{padding:16px}
+.card-title{margin:0 0 8px 0;font-size:16px}
+.input{flex:1;padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:#0f1520;color:var(--ink)}
+.btn{padding:10px 14px;border-radius:10px;border:1px solid var(--border);background:#141e29;color:var(--ink);cursor:pointer}
+.btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent2));border:0;color:#081018;font-weight:600}
+.list{list-style:none;margin:10px 0 0 0;padding:0;max-height:160px;overflow:auto}
+.list li{padding:8px 10px;border-bottom:1px dashed var(--border)}
+.scroll{height:230px;overflow:auto;padding:8px;background:#0c131b;border:1px solid var(--border);border-radius:8px}
+.meal{padding:10px;border:1px solid var(--border);border-radius:10px;background:#0f1620}
