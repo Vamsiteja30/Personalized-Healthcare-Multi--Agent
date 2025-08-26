@@ -1,4 +1,4 @@
-# 🏥 Personalized Healthcare Multi-Agent Demo
+#  Personalized Healthcare Multi-Agent Demo
 
 A cutting-edge proof-of-concept demo showcasing a multi-agent system capable of personalized user interaction, real-time health tracking, and adaptive meal planning using AI-powered agents.
 
@@ -6,9 +6,9 @@ A cutting-edge proof-of-concept demo showcasing a multi-agent system capable of 
 ![Multi-Agent System](https://img.shields.io/badge/Multi--Agent-Orchestration-green?style=for-the-badge)
 ![Docker Ready](https://img.shields.io/badge/Docker-Ready-blue?style=for-the-badge&logo=docker)
 
-## 🚀 Features
+##  Features
 
-### 🤖 Multi-Agent System
+###  Multi-Agent System
 - **Greeting Agent**: Personalized user welcome with voice integration
 - **Mood Tracker Agent**: Real-time mood monitoring and trend analysis
 - **CGM Agent**: Continuous Glucose Monitor data logging (80-300 mg/dL range)
@@ -16,21 +16,21 @@ A cutting-edge proof-of-concept demo showcasing a multi-agent system capable of 
 - **Meal Planner Agent**: AI-powered personalized meal plans based on dietary preferences and medical conditions
 - **Interrupt Agent**: General Q&A assistant available throughout the interaction
 
-### 💻 Modern UI/UX
+###  Modern UI/UX
 - **Glassmorphism Design**: Premium visual experience with modern aesthetics
 - **Real-time Charts**: Dynamic CGM and mood trend visualizations
 - **Voice Integration**: Text-to-speech greetings and feedback
 - **Responsive Design**: Works seamlessly on desktop and mobile devices
 - **Interactive Dashboard**: Comprehensive health metrics and quick actions
 
-### 🔧 Technical Stack
+###  Technical Stack
 - **Backend**: FastAPI (Python) with SQLite database
 - **Frontend**: React/TypeScript with AG-UI/CopilotKit
 - **AI Integration**: Google Gemini AI for LLM-powered features
 - **Containerization**: Docker & Docker Compose for easy deployment
 - **Agent Framework**: Custom Agno implementation for agent orchestration
 
-## 📊 Synthetic Dataset
+##  Synthetic Dataset
 
 The system includes a comprehensive dataset of 100 individuals with:
 - **Personal Information**: Name, City, Age
@@ -38,14 +38,14 @@ The system includes a comprehensive dataset of 100 individuals with:
 - **Medical Conditions**: Type 2 Diabetes, Hypertension, Arthritis, Depression, etc.
 - **Physical Limitations**: Mobility issues, swallowing difficulties
 
-## 🛠️ Quick Start
+##  Quick Start
 
 ### Prerequisites
 - Docker and Docker Compose
 - Python 3.11+ (for local development)
 - Node.js 18+ (for local development)
 
-### 🐳 Docker Deployment (Recommended)
+###  Docker Deployment (Recommended)
 
 ```bash
 # Clone the repository
@@ -60,7 +60,7 @@ docker-compose up --build
 # Backend API: http://localhost:8000
 ```
 
-### 🖥️ Local Development
+###  Local Development
 
 ```bash
 # Backend Setup
@@ -74,7 +74,7 @@ npm install
 npm start
 ```
 
-## 🎯 Usage Guide
+##  Usage Guide
 
 ### 1. User Authentication
 - Enter a valid User ID (1-100) to access personalized dashboard
@@ -97,14 +97,14 @@ npm start
 - Get instant responses with context-aware routing
 - Seamless integration with all other agents
 
-## 📈 Real-time Analytics
+##  Real-time Analytics
 
 - **CGM Trends**: Line chart showing glucose readings over time
 - **Mood Analysis**: Bar chart displaying mood patterns
 - **Nutritional Insights**: Automatic macro calculation for logged meals
 - **Personalized Recommendations**: AI-driven health suggestions
 
-## 🏗️ Architecture
+##  Architecture
 
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
@@ -120,7 +120,7 @@ npm start
                                               └─────────────────┘
 ```
 
-## 🔍 API Endpoints
+##  API Endpoints
 
 ### Core Endpoints
 - `GET /health` - Backend health check
@@ -136,7 +136,7 @@ npm start
 - `POST /voice/generate-greeting` - Generate voice greeting
 - `GET /voice/greeting/{user_id}` - Get default greeting audio
 
-## 🧪 Testing
+##  Testing
 
 Run the comprehensive test suite to verify all features:
 
@@ -145,22 +145,22 @@ python test_assignment.py
 ```
 
 Tests cover:
-- ✅ Backend health and connectivity
-- ✅ All agent functionalities
-- ✅ Database operations
-- ✅ API endpoint validation
-- ✅ Assignment compliance
+- Backend health and connectivity
+- All agent functionalities
+- Database operations
+- API endpoint validation
+- Assignment compliance
 
-## 📋 Assignment Compliance
+##  Assignment Compliance
 
-This project strictly follows the GenAI Assignment requirements:
+This project strictly follows the  Assignment requirements:
 
-### ✅ Data Layer
+###  Data Layer
 - [x] Synthetic dataset of 100 individuals
 - [x] Personal info, dietary preferences, medical conditions
 - [x] Physical limitations and realistic distribution
 
-### ✅ Multi-Agent System
+###  Multi-Agent System
 - [x] Greeting Agent with user validation
 - [x] Mood Tracker Agent with rolling averages
 - [x] CGM Agent with range validation (80-300 mg/dL)
@@ -168,19 +168,19 @@ This project strictly follows the GenAI Assignment requirements:
 - [x] Meal Planner Agent with personalized 3-meal plans
 - [x] Interrupt Agent for general Q&A
 
-### ✅ Frontend Integration
+###  Frontend Integration
 - [x] AG-UI/CopilotKit conversational interface
 - [x] Real-time charts for CGM and mood trends
 - [x] Food intake logging forms
 - [x] Meal plan recommendations display
 
-### ✅ Deployment
+### Deployment
 - [x] Docker containerization
 - [x] Docker Compose orchestration
 - [x] Single command deployment
 - [x] Persistent data storage
 
-## 🎨 UI/UX Highlights
+##  UI/UX Highlights
 
 - **Modern Glassmorphism Design**: Premium visual experience
 - **Voice Integration**: Text-to-speech for enhanced accessibility
@@ -206,14 +206,14 @@ REACT_APP_API_BASE=http://localhost:8000
 - **Database**: SQLite with persistent volume
 - **Network**: Internal Docker network for service communication
 
-## 📊 Performance Metrics
+##  Performance Metrics
 
 - **Response Time**: < 2 seconds for agent interactions
 - **Real-time Updates**: Instant chart refresh on data input
 - **Voice Generation**: < 3 seconds for TTS audio
 - **Docker Startup**: < 30 seconds for full application
 
-## 🤝 Contributing
+##  Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -225,7 +225,7 @@ REACT_APP_API_BASE=http://localhost:8000
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - **Google Gemini AI** for LLM capabilities
 - **AG-UI/CopilotKit** for conversational interface
@@ -233,7 +233,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **React/TypeScript** for modern frontend
 - **Docker** for containerization
 
-## 📞 Support
+##  Support
 
 For questions or support:
 - Create an issue in the GitHub repository
@@ -242,7 +242,7 @@ For questions or support:
 
 ---
 
-**Built with ❤️ for the future of personalized healthcare**
+**Built with Love for the future of personalized healthcare**
 
 ![GitHub stars](https://img.shields.io/github/stars/yourusername/healthcare-multi-agent-starter?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/yourusername/healthcare-multi-agent-starter?style=social)
